@@ -1,0 +1,298 @@
+#item-nav {
+    margin-bottom: 2em;
+}
+
+
+#buddypress .profile-container .user-tab .author-name {
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    padding: 52px 0 0px;
+    margin: 25px 0 0px;
+    position: relative;
+    border-top: 1px solid #eee;
+    word-wrap: break-word;
+}
+
+#buddypress .profile-container .user-tab .author-name::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 36px;
+    height: 1px;
+    background: none;
+}
+
+#buddypress .profile-container .user-tab .author-mentionname {
+    text-align: center;
+    display: inherit;
+    color: #999;
+    font-size: 1.2em;
+}
+
+#item-nav.group-items {
+    margin-bottom: 3em;
+}
+
+
+#buddypress div.member-menu-container::before {
+    content: '';
+    background-color: #e9e9e9;
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    bottom: -10px;
+}
+
+#buddypress div.member-menu-container {
+    position: relative;
+    height: 51px;
+    display: flex;
+    align-items: center;
+    overflow: visible !important;
+}
+
+#buddypress div.member-menu-container ul.member-menu {
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+    overflow: hidden;
+}
+
+
+#buddypress div.item-list-tabs ul.lp-bp-profile-nav li {
+    float: none;
+    margin-bottom: 0px;
+    display: inline-flex;
+}
+
+#buddypress div.member-menu-container ul.member-menu li {
+    flex: none;
+    padding: 1rem;
+    border-bottom: none;
+}
+
+#buddypress div.member-menu-container button {
+    align-self: stretch;
+    transition: all .4s ease-out;
+    padding: 0 1rem 0 1.5rem;
+    outline: 0;
+    border: 0;
+    font-weight: bold;
+    background: #fff;
+    color: #333;
+}
+
+
+#buddypress div.member-menu-container ul.hidden-links {
+  position: absolute;
+  background: #d8d8d8;
+  right: 0;
+  top: 100%;
+  z-index: 99;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.3);
+  border-top: 8px solid #ffb606;
+  width: 190px;
+}
+
+
+#buddypress div.member-menu-container ul.hidden-links::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #ffb606;
+    display: block;
+    position: absolute;
+    top: -14px;
+    transform: rotate(-44deg);
+    z-index: 100;
+    right: 19px;
+}
+
+#buddypress div.member-menu-container ul.hidden-links li a {
+  color: #404040;
+  padding-right: 1rem;
+  margin-right: 0;
+}
+
+#buddypress div.member-menu-container ul.hidden-links.hidden {
+  display: none;
+}
+
+#buddypress div.member-menu-container ul.hidden-links li {
+	padding: 0;
+	width: 100%;
+}
+
+#buddypress div.member-menu-container button::after {
+    content: attr(count);
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    background: #ffb606;
+    color: #333;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.3);
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 14px;
+    margin-left: 1rem;
+  /*  margin-right: calc(-1rem + -8px);*/
+}
+
+#buddypress div.item-list-tabs ul li a {
+    border-radius: 0;
+    margin-right: 3px;
+    border: 1px solid #eee;
+    border-bottom: 0;
+    font-size: 13px;
+    font-weight: 700;
+    background: #f9f9f9;
+    line-height: 29px;
+    padding: 10px 15px;
+    min-width: 150px;
+    text-align: center;
+}
+
+#buddypress div.member-menu-container ul.member-menu li a {
+    display: inline-block;
+    padding: 0 1em;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 51px;
+    height: 51px;
+    border: none;
+    background: #fff;
+}
+
+
+#buddypress div.item-list-tabs.member-menu-container ul li::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 3px;
+    height: 3px;
+    left: 0;
+    top: unset;
+}
+
+.profile-container {
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    overflow: visible !important;
+}
+
+.profile-container .user-tab {
+    width: 25%;
+    width: calc(300px);
+    width: -webkit-calc(300px);
+    width: -moz-calc(300px);
+    float: left;
+    padding-right: 30px;
+    margin-top: -5em;
+}
+
+.profile-container .user-tab .author-avatar {
+    margin-bottom: 25px;
+}
+
+.profile-container .user-tab .author-avatar img {
+    margin: 0;
+}
+
+#learn-press-user-profile .author-avatar {
+    text-align: center;
+}
+
+#learn-press-user-profile .author-avatar img {
+    border-radius: 50%;
+}
+
+.profile-container .profile-tabs {
+    width: 75%;
+    width: calc(100% - 300px);
+    width: -webkit-calc(100% - 300px);
+    width: -moz-calc(100% - 300px);
+    float: right;
+}
+
+#buddypress .profile-container .user-tab #bp-header-content .member-names {
+    position: relative;
+    margin-bottom: 2em;
+    padding: 0 0 2em;
+}
+
+#buddypress .profile-container .user-tab #bp-header-content .member-names::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 36px;
+    height: 1px;
+    background: #000;
+}
+
+
+#buddypress .user-action-btns {
+	text-align: center;
+    margin-bottom: 2em;
+}
+
+#buddypress .user-action-btn  {
+    font-size: 1.5em;
+    color: inherit;
+    position: relative;
+}
+
+.badge.badge-md.badge-top-right.badge-danger {
+
+    position: absolute;
+    min-width: 20px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    background: red;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+    top: 0;
+    right: 0;
+    padding: 0.1em 0.5em;
+
+}
+
+#buddypress .generic-button a, #buddypress input[type="button"] {
+    color: #333;
+}
+
+#buddypress .comment-reply-link, #buddypress .generic-button a, #buddypress .standard-form button, #buddypress a.button, #buddypress input[type="button"], #buddypress input[type="reset"], #buddypress input[type="submit"], #buddypress ul.button-nav li a, a.bp-title-button, .quiz-buttons button, .learn-press .tab-content .course-wishlist-box, #buddypress a.button, li form.ac-form .ac-reply-content .ac-reply-cancel, #buddypress div#item-header div.generic-button > a, .learn-press .view-cart-button, .thim-widget-accordion .widget-title::after, .vc_tta-container[data-vc-action*="collapse"] > h2::after, .sc_heading .line {
+    font-size: small;
+    cursor: pointer;
+    outline: 0;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffb606;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 600;
+}
+
+#conductor-back-button {
+    padding: 0.9em 2em;
+    background: #ffb606;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 600;
+    margin-bottom: 3em;
+}
