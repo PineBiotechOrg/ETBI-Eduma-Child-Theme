@@ -1503,7 +1503,8 @@ ul.list-group.list-table > li a:hover {
 
 }
 
-#user-notifications-top .badge { 
+#user-notifications-top .badge,
+#notification-menu-trigger .badge { 
     padding: 0 7px;
     border-radius: 30px;
 /*    height: 20px;
@@ -1514,11 +1515,13 @@ ul.list-group.list-table > li a:hover {
 
 }
 
-#user-notifications-top .badge.no-notifications {
+#user-notifications-top .badge.no-notifications,
+#notification-menu-trigger .badge.no-notifications {
     background: grey;
 }
 
-#user-notifications-top .badge.has-notifications {
+#user-notifications-top .badge.has-notifications,
+#notification-menu-trigger .badge.has-notifications {
     background: red;
 }
 
@@ -1579,6 +1582,36 @@ ul.list-group.list-table > li a:hover {
     visibility: visible;
     opacity: 1;
     transform: translateY(0%);
+}
+
+ul.bp-notification-list {
+    list-style: none;
+    color: black;
+    margin: 0;
+    padding: 0.5em;
+    line-height: 1.5em;
+}
+
+#toolbar ul.bp-notification-list > li > a {
+
+    color: #337ab7;
+
+}
+
+#toolbar .bp-notifications-widget-clear-link {
+    color: grey;
+    padding: 0.5em;
+    font-size: 80%;
+}
+
+#toolbar .bp-notifications-widget-clear-link:hover {
+    color: grey;
+}
+
+#notification-menu.dropdown::after {
+
+    left: 6px;
+
 }
 
 #user-menu .user-dropdown-item a {
