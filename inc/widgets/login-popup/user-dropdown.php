@@ -52,7 +52,7 @@
 			}
 		} else { ?>
 
-		    <li><?php _e( "You don't have any new notification.", 'etbit' ); ?></li>
+		    <li><?php _e( "You don't have any new notifications", 'etbi' ); ?></li>
 
 			<?php
 		}
