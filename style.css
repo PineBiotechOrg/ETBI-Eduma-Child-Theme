@@ -1884,6 +1884,10 @@ body.course-item-popup #learn-press-content-item .content-item-wrap .comments-ar
     color: #333 !important;
 }
 
+.message.message-warning.learn-press-message.coming-soon-message {
+    width: 100% !important;
+}
+
 a.button.btn.btn-primary.download-link,
 .download-link {
     color: #333;
