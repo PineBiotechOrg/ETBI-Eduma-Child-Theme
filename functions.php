@@ -825,3 +825,23 @@ if ( ! function_exists( 'thim_remove_thim_hooks' ) ) {
 }
 
 add_action( 'after_setup_theme', 'thim_remove_thim_hooks', 25 );
+
+/**
+ * Process extra register fields
+ *
+ * @param $login
+ * @param $email
+ * @param $errors
+ */
+if ( ! function_exists( 'thim_check_name_register_fields' ) ) {
+    function thim_check_name_register_fields( $login, $email, $errors ) {
+        $firstname = ( isset( $_POST['user_firstname'] ) ) ? $_POST['user_firstname'] : '';
+        $lastname = ( isset( $_POST['user_lastname'] ) ) ? $_POST['user_lastname'] : '';
+        if ( empty( $firstname ) ) {
+            $errors->add( 'empty_firstname', "<strong>ERROR</strong>: Must supply first name." );
+        } else if( empty( $lastname ) ) {
+            $errors->add( 'empty_lastname', "<strong>ERROR</strong>: Must supply last name." );
+        }
+    }
+}
+add_action( 'register_post', 'thim_check_name_register_fields', 10, 4 );
