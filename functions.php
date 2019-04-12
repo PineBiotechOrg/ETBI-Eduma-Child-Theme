@@ -835,8 +835,8 @@ add_action( 'after_setup_theme', 'thim_remove_thim_hooks', 25 );
  */
 if ( ! function_exists( 'thim_check_name_register_fields' ) ) {
     function thim_check_name_register_fields( $login, $email, $errors ) {
-        $firstname = ( isset( $_POST['user_firstname'] ) ) ? $_POST['user_firstname'] : '';
-        $lastname = ( isset( $_POST['user_lastname'] ) ) ? $_POST['user_lastname'] : '';
+        $firstname = ( isset( $_POST['user_firstname'] ) ) ? trim( $_POST['user_firstname'] ) : '';
+        $lastname = ( isset( $_POST['user_lastname'] ) ) ? trim( $_POST['user_lastname'] ) : '';
         if ( empty( $firstname ) ) {
             $errors->add( 'empty_firstname', "<strong>ERROR</strong>: Must supply first name." );
         } else if( empty( $lastname ) ) {
@@ -845,3 +845,36 @@ if ( ! function_exists( 'thim_check_name_register_fields' ) ) {
     }
 }
 add_action( 'register_post', 'thim_check_name_register_fields', 10, 4 );
+
+function etbi_register_form() {
+
+    $first_name = ( ! empty( $_POST['user_firstname'] ) ) ? trim( $_POST['user_firstname'] ) : '';
+    $last_name = ( ! empty( $_POST['user_lastname'] ) ) ? trim( $_POST['user_lastname'] ) : '';
+
+        ?>
+        <p>
+            <label for="user_firstname"><?php _e( 'First Name', 'etbi' ) ?><br />
+                <input type="text" name="user_firstname" id="user_firstname" class="input" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
+        </p>
+
+        <p>
+            <label for="user_lastname"><?php _e( 'Last Name', 'mydomain' ) ?><br />
+                <input type="text" name="user_lastname" id="user_lastname" class="input" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
+        </p>
+
+        <?php
+}
+
+add_action( 'register_form', 'etbi_register_form' );
+
+
+function etbi_user_register( $user_id ) {
+
+    $first_name = ( ! empty( $_POST['user_firstname'] ) ) ? trim( $_POST['user_firstname'] ) : '';
+    $last_name = ( ! empty( $_POST['user_lastname'] ) ) ? trim( $_POST['user_lastname'] ) : '';
+
+    update_user_meta( $user_id, 'first_name', $first_name );
+    update_user_meta( $user_id, 'last_name', $last_name );
+}
+
+add_action( 'user_register', 'etbi_user_register' );
