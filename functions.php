@@ -851,18 +851,36 @@ function etbi_register_form() {
     $first_name = ( ! empty( $_POST['user_firstname'] ) ) ? trim( $_POST['user_firstname'] ) : '';
     $last_name = ( ! empty( $_POST['user_lastname'] ) ) ? trim( $_POST['user_lastname'] ) : '';
 
+    if( is_page() ) {
+
         ?>
         <p>
-            <label for="user_firstname"><?php _e( 'First Name', 'etbi' ) ?><br />
-                <input type="text" name="user_firstname" id="user_firstname" class="input" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
+                <input type="text" name="user_firstname" id="user_firstname" placeholder="First Name" class="input required" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
         </p>
 
         <p>
-            <label for="user_lastname"><?php _e( 'Last Name', 'mydomain' ) ?><br />
-                <input type="text" name="user_lastname" id="user_lastname" class="input" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
+                <input type="text" name="user_lastname" id="user_lastname" placeholder="Last Name"  class="input required" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
         </p>
 
         <?php
+        
+    } else {
+
+        ?>
+        <p>
+            <label for="user_firstname"><?php _e( 'First Name', 'etbi' ) ?><br />
+                <input type="text" name="user_firstname" id="user_firstname" class="input required" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" size="25" /></label>
+        </p>
+
+        <p>
+            <label for="user_lastname"><?php _e( 'Last Name', 'etbi' ) ?><br />
+                <input type="text" name="user_lastname" id="user_lastname" class="input required" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" size="25" /></label>
+        </p>
+
+        <?php
+
+    }
+
 }
 
 add_action( 'register_form', 'etbi_register_form' );
