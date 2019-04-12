@@ -863,7 +863,7 @@ function etbi_register_form() {
         </p>
 
         <?php
-        
+
     } else {
 
         ?>
@@ -888,8 +888,8 @@ add_action( 'register_form', 'etbi_register_form' );
 
 function etbi_user_register( $user_id ) {
 
-    $first_name = ( ! empty( $_POST['user_firstname'] ) ) ? trim( $_POST['user_firstname'] ) : '';
-    $last_name = ( ! empty( $_POST['user_lastname'] ) ) ? trim( $_POST['user_lastname'] ) : '';
+    $first_name = ( ! empty( $_POST['user_firstname'] ) ) ? ucfirst( trim( $_POST['user_firstname'] ) ) : '';
+    $last_name = ( ! empty( $_POST['user_lastname'] ) ) ? ucfirst( trim( $_POST['user_lastname'] ) ) : '';
 
     update_user_meta( $user_id, 'first_name', $first_name );
     update_user_meta( $user_id, 'last_name', $last_name );
