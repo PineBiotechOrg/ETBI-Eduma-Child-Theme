@@ -19,7 +19,17 @@
 	if ( is_user_logged_in() ) {
 		if( function_exists('bp_is_active') ) {
 
-			etbi_user_dropdown();
+			if( etbi_maybe_display_banner() ) {
+
+				etbi_user_registration_form();
+
+			} else {
+
+				etbi_user_dropdown();
+
+			}
+
+			
 
 		} else {
 

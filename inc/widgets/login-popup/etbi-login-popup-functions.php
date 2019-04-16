@@ -553,6 +553,46 @@ if( ! function_exists( 'etbi_get_user_links' ) ) {
 
 }
 
+if( ! function_exists('etbi_no_first_or_last_name') ) {
+
+	function etbi_no_first_or_last_name() {
+
+	    if( is_user_logged_in() ) {
+
+	        if( $current_user = get_currentuserinfo() ) {
+
+	            if( empty( $current_user->user_firstname ) || empty( $current_user->user_lastname ) ) {
+
+	                return true;
+
+	            }
+
+	        }
+
+	    }
+
+	    return false;
+
+	}
+
+}
+
+if( ! function_exists('etbi_maybe_display_banner') ) {
+
+	function etbi_maybe_display_banner() {
+
+	    if( etbi_no_first_or_last_name() ) {
+
+	        return true;
+
+	    }
+
+	    return false;
+
+	}
+
+}
+
 if( ! function_exists('etbi_get_user_dropdown') ) {
 
 	function etbi_get_user_dropdown() {
@@ -560,6 +600,8 @@ if( ! function_exists('etbi_get_user_dropdown') ) {
 		$current_user = wp_get_current_user();
 		$user_link = esc_url( learn_press_user_profile_link() );
 		$user_name = $current_user->user_login;
+		$first_name = $current_user->user_firstname;
+		$last_name = $current_user->user_lastname;
 		$user_avatar = get_avatar( get_current_user_id(), 21 );
 
 		if( etbi_unread_notifications_count() > 0 ) {
@@ -575,6 +617,8 @@ if( ! function_exists('etbi_get_user_dropdown') ) {
 		$default_path  = ETBI_DIR . 'inc/widgets/login-popup/';
 		$template_args = apply_filters( 'etbi_user_dropdown_args', array(
 			'current_user' 			=> $current_user,
+			'first_name'			=> $first_name,
+			'last_name'				=> $last_name,
 			'user_link'				=> $user_link,
 			'user_name'				=> $user_name,
 			'notification_class'	=> $notification_class
@@ -595,3 +639,116 @@ if( ! function_exists('etbi_user_dropdown') ) {
 	}
 
 }
+
+if( ! function_exists('etbi_get_user_registration_form') ) {
+
+	function etbi_get_user_registration_form() {
+
+		$current_user = wp_get_current_user();
+		$user_link = esc_url( learn_press_user_profile_link() );
+		$user_name = $current_user->user_login;
+		$first_name = $current_user->user_firstname;
+		$last_name = $current_user->user_lastname;
+		$user_avatar = get_avatar( get_current_user_id(), 21 );
+
+
+		$template_name = 'user-incomplete-registration.php';
+		$template_path =  ETBI_DIR . 'inc/widgets/login-popup/';
+		$default_path  = ETBI_DIR . 'inc/widgets/login-popup/';
+		$template_args = apply_filters( 'etbi_user_dropdown_args', array(
+			'current_user' 			=> $current_user,
+			'first_name'			=> $first_name,
+			'last_name'				=> $last_name,
+			'user_link'				=> $user_link,
+			'user_name'				=> $user_name,
+			'notification_class'	=> $notification_class
+		) );
+
+		return etbi_get_template_content( $template_name, $template_args, $template_path, $default_path );
+
+	}
+
+}
+
+
+if( ! function_exists('etbi_user_registration_form') ) {
+
+	function etbi_user_registration_form() {
+
+		echo etbi_get_user_registration_form();
+
+	}
+
+}
+
+function etbi_render_user_incomplete_registration_modal() {
+
+    $modal_id = 'incomplete_registration';
+    $modal_title = __( 'Fill out these fields!', 'etbi' );
+    $current_user = wp_get_current_user();
+
+    echo etbi_get_template_content( 'modal.php', array( 'modal_id' => $modal_id, 'modal_title' => $modal_title, 'current_user' => $current_user ), ETBI_DIR . 'inc/templates/', ETBI_DIR . 'inc/templates/' );
+
+}
+
+add_action( 'thim_end_wrapper_container', 'etbi_render_user_incomplete_registration_modal', 10 );
+
+function etbi_user_incomplete_registration_form( $modal_id ) {
+
+    if( $modal_id == 'incomplete_registration' ) {
+
+        $current_user = wp_get_current_user();
+
+        echo etbi_get_template_content( 'incomplete-registration-form.php', array( 'current_user' => $current_user ), ETBI_DIR . 'inc/widgets/login-popup/', ETBI_DIR . 'inc/widgets/login-popup/' );
+
+    }
+
+}
+
+add_action( 'etbi_incomplete_registration_modal_content_area', 'etbi_user_incomplete_registration_form', 10, 1 );
+
+function etbi_process_incomplete_registration_form() {
+
+	if( is_user_logged_in() ) {
+
+		if( ! empty( $_REQUEST ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+
+			$user_id = get_current_user_id();
+			$nonce = 'incomplete_registration_form_' . $user_id;
+
+			if( isset( $_POST['incomplete_registration_form'] ) && wp_verify_nonce( $_POST['incomplete_registration_form'], $nonce ) ) { //isset( $_POST[ $nonce ] ) && wp_verify_nonce( $nonce )
+
+				$first_name = ( isset( $_POST['first_name'] ) ) ? trim( ucfirst( $_POST['first_name'] ) ) : '';
+				$last_name = ( isset( $_POST['last_name'] ) ) ? trim( ucfirst( $_POST['last_name'] ) ) : '';
+
+				$user_data = apply_filters( 'etbi_user_data', array(
+
+					'ID'			=> $user_id,
+					'first_name'	=> $first_name,
+					'last_name'		=> $last_name
+
+				) );
+
+				$user_id =  wp_update_user( $user_data );
+
+				if( ! is_wp_error( $user_id ) ) {
+
+					do_action( 'etbi_user_update_userdata', $user_data );
+
+				} else {
+
+					error_log( $user_id->get_error_message() );
+
+				}
+
+			}			
+
+		}
+
+	}
+
+}
+
+etbi_process_incomplete_registration_form();
+
+//add_action( 'wp', 'etbi_process_incomplete_registration_form', 10 );

@@ -3833,3 +3833,15 @@ xapp prototype - no need to import this in production
         flex-direction: column;
     }
 }
+
+
+a#user-incomplete-registration-form {
+    padding: 0.2em 0.5em !important;
+    color: black;
+}
+
+a#user-incomplete-registration-form:hover {
+    padding: 0.2em 0.5em !important;
+    color: black;
+    border-color: #ffb606 !important;
+}

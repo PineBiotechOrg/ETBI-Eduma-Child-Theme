@@ -18,7 +18,10 @@
 			$doc.on('click', '.etbi-modal.is-visible .etbi-close-form', this.closeModal);
 			$doc.on('click', '.etbi-modal.is-visible .overlay', this.closeModal);
 			$doc.on('click', '.completed-course-info', this.open_finish_course_modal);
-			$doc.on('click', '.course-data .course-review .value', this.review_from_modal )
+			$doc.on('click', '.course-data .course-review .value', this.review_from_modal );
+			$doc.on('click', '#user-incomplete-registration-form.modal-trigger', this.open_incomplete_registration_form_modal );
+			$doc.on('click', '.etbi-modal.incomplete_registration.is-visible > .overlay', this.close_incomplete_registration_modal);
+			$doc.on('click', '.etbi-modal.incomplete_registration.is-visible > .etbi-modal-container .etbi-close-form', this.close_incomplete_registration_modal);
 
 			$win.on('load', this.finish_course_modal );
 
@@ -92,6 +95,18 @@
 	                scrollTop: review_tab.offset().top - 50
 	            }, 800);
 	        }
+
+		},
+		open_incomplete_registration_form_modal : function (e) {
+
+			ETBI_Core.open_or_close_modal( '.etbi-modal.incomplete_registration' );
+
+		},
+		close_incomplete_registration_modal : function(e) {
+
+			e.preventDefault();
+
+			ETBI_Core.closeModal( '.etbi-modal.incomplete_registration' );		
 
 		}
 	};
