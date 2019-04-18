@@ -22,10 +22,47 @@
 			$doc.on('click', '#user-incomplete-registration-form.modal-trigger', this.open_incomplete_registration_form_modal );
 			$doc.on('click', '.etbi-modal.incomplete_registration.is-visible > .overlay', this.close_incomplete_registration_modal);
 			$doc.on('click', '.etbi-modal.incomplete_registration.is-visible > .etbi-modal-container .etbi-close-form', this.close_incomplete_registration_modal);
+			$doc.on('click', '#popup-header .search-visible', this.is_not_searching_in_course );
+			$doc.on('click', '.courses-searching > button', this.is_searching_in_course );
+			$doc.on('click', '.courses-searching > #close-search-btn', this.is_not_searching_in_course );
+			$doc.on('focus', '.courses-searching > .courses-search-input', this.is_searching_in_course );
+			$doc.on('blur', '.courses-searching > .courses-search-input', this.is_searching_in_course );
 
 			$win.on('load', this.finish_course_modal );
 
 
+
+		},
+		is_searching_in_course : function( e ) {
+
+			if( $( '.courses-searching' ).hasClass( 'searching' ) ) {
+
+				return;
+
+			} else {
+
+				$( '.courses-searching' ).addClass('searching');
+
+			}
+
+		},
+		is_not_searching_in_course : function(e) {
+
+			if( $( '.courses-searching' ).hasClass( 'searching' ) ) {
+
+				$( '.courses-searching' ).removeClass('searching');
+
+			} else {
+
+				return;
+
+			}
+
+			if( $( '.courses-list-search' ).hasClass( 'search-visible' ) ) {
+
+				$( '.courses-list-search' ).removeClass('search-visible');
+				
+			}
 
 		},
 		open_or_close_modal : function( modal ) {
