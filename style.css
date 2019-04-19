@@ -3951,7 +3951,7 @@ body.course-item-popup #learn-press-content-item #course-item-content-header .ba
     line-height: 84px;
 }
 
-.learn-press-course-results-progress- {
+body.course-item-popup #learn-press-content-item #course-item-content-header .learn-press-course-results-progress- {
     top: 82px;
     position: absolute;
     width: 100%;
