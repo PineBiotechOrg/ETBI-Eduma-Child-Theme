@@ -721,19 +721,14 @@ function etbi_process_incomplete_registration_form() {
 				$first_name = ( isset( $_POST['first_name'] ) ) ? trim( ucfirst( $_POST['first_name'] ) ) : '';
 				$last_name = ( isset( $_POST['last_name'] ) ) ? trim( ucfirst( $_POST['last_name'] ) ) : '';
 
-				$user_data = apply_filters( 'etbi_user_data', array(
+				update_user_meta( $user_id, 'first_name', $first_name );
+    			update_user_meta( $user_id, 'last_name', $last_name );
 
-					'ID'			=> $user_id,
-					'first_name'	=> $first_name,
-					'last_name'		=> $last_name
-
-				) );
-
-				$user_id =  wp_update_user( $user_data );
+    			do_action( 'etbi_user_updated_userdata', $user_id, $first_name, $last_name );
 
 				if( ! is_wp_error( $user_id ) ) {
 
-					do_action( 'etbi_user_update_userdata', $user_data );
+					do_action( 'etbi_user_update_userdata' );
 
 				} else {
 
@@ -749,6 +744,4 @@ function etbi_process_incomplete_registration_form() {
 
 }
 
-etbi_process_incomplete_registration_form();
-
-//add_action( 'wp', 'etbi_process_incomplete_registration_form', 10 );
+add_action( 'init', 'etbi_process_incomplete_registration_form' );
