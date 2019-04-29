@@ -18,4 +18,3 @@ if ( ! function_exists( 'thim_remove_thim_hooks' ) ) {
 }
 
 add_action( 'after_setup_theme', 'thim_remove_thim_hooks', 20 );
-

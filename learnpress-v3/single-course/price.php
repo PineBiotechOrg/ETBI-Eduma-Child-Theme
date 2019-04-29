@@ -37,7 +37,9 @@ if ( ! $price = $course->get_price_html() ) {
 
         <?php } ?>
 
-        <?php echo $price; ?>
+
+
+        <?php if( ! $user->has_purchased_course( $course->get_id() ) ) : echo $price; endif; ?>
 
         <!-- <?php echo esc_html( $course->get_id() ); ?> -->
 

@@ -896,3 +896,46 @@ function etbi_user_register( $user_id ) {
 }
 
 add_action( 'user_register', 'etbi_user_register' );
+
+
+
+function etbi_get_the_notification_read_link( $link, $user_id ) {
+
+    $user_id = 0 === $user_id ? bp_displayed_user_id() : $user_id;
+
+    $link =  sprintf( '<a href="%1$s" class="mark-read primary">%2$s</a>', esc_url( bp_get_the_notification_mark_read_url( $user_id ) ), '<span class="fa fa-eye"></span>' );
+ 
+    return $link;
+
+}
+
+add_filter( 'bp_get_the_notification_mark_read_link', 'etbi_get_the_notification_read_link', 10, 2 );
+
+
+
+
+function etbi_get_the_notification_unread_link( $link, $user_id ) {
+
+    $user_id = 0 === $user_id ? bp_displayed_user_id() : $user_id;
+
+    $link =  sprintf( '<a href="%1$s" class="mark-read primary">%2$s</a>', esc_url( bp_get_the_notification_mark_unread_url( $user_id ) ), '<span class="fa fa-eye-slash"></span>' );
+ 
+    return $link;
+
+}
+
+add_filter( 'bp_get_the_notification_mark_unread_link', 'etbi_get_the_notification_unread_link', 10, 2 );
+
+
+function etbi_get_the_notification_delete_link( $link, $user_id ) {
+
+    $user_id = 0 === $user_id ? bp_displayed_user_id() : $user_id;
+
+    $link =  sprintf( '<a href="%1$s" class="delete secondary confirm">%2$s</a>', esc_url( bp_get_the_notification_delete_url( $user_id ) ), '<span class="fa fa-times-circle-o"></span>' );
+ 
+    return $link;
+
+
+}
+
+add_filter('bp_get_the_notification_delete_link', 'etbi_get_the_notification_delete_link', 10, 2 );
